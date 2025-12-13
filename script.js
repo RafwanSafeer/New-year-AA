@@ -726,29 +726,6 @@ function handleStartClick() {
     startAllAudio();
 }
 
-// Handle orientation changes
-function checkOrientation() {
-    const orientationMsg = document.getElementById('orientationMessage');
-    const container = document.querySelector('.container');
-    
-    if (window.innerWidth <= 768) {
-        // Mobile device
-        if (window.innerHeight > window.innerWidth) {
-            // Portrait mode
-            if (orientationMsg) orientationMsg.classList.add('show');
-            if (container) container.style.display = 'none';
-        } else {
-            // Landscape mode
-            if (orientationMsg) orientationMsg.classList.remove('show');
-            if (container) container.style.display = 'block';
-        }
-    } else {
-        // Desktop - always show
-        if (orientationMsg) orientationMsg.classList.remove('show');
-        if (container) container.style.display = 'block';
-    }
-}
-
 // Add event listeners for starting audio
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('startOverlay');
@@ -763,13 +740,6 @@ document.addEventListener('DOMContentLoaded', () => {
             handleStartClick();
         }
     }, { once: true });
-    
-    // Check orientation on load and resize
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(checkOrientation, 100);
-    });
 });
 
 // Start animation

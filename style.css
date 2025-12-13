@@ -366,39 +366,6 @@ body {
     line-height: 1.4;
 }
 
-/* Landscape Orientation Message */
-.orientation-message {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a1a;
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #ffd700;
-    text-align: center;
-    padding: 20px;
-}
-
-.orientation-message.show {
-    display: flex;
-}
-
-.orientation-message h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px #ffd700;
-}
-
-.orientation-message p {
-    font-size: 1.2rem;
-    color: #fff;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .new-year-text h1 {
@@ -441,27 +408,15 @@ body {
     .right-side-text p {
         font-size: 0.9rem;
     }
-}
-
-/* Portrait orientation on mobile - show message */
-@media screen and (orientation: portrait) and (max-width: 768px) {
-    .orientation-message {
-        display: flex;
+    
+    .new-year-image img {
+        max-height: 200px;
     }
     
-    .container {
-        display: none;
-    }
-}
-
-/* Landscape orientation on mobile */
-@media screen and (orientation: landscape) and (max-width: 1024px) {
-    .orientation-message {
-        display: none !important;
-    }
-    
-    .container {
-        display: block;
+    .speech-bubble {
+        font-size: 1rem;
+        max-width: 200px;
+        padding: 12px 15px;
     }
 }
 

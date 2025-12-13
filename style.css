@@ -1,0 +1,467 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #0a0a1a;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Festoons */
+.festoon {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fab1a0);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: float 3s ease-in-out infinite;
+    z-index: 1;
+}
+
+.festoon-left {
+    left: -50px;
+    top: 10%;
+    animation-delay: 0s;
+}
+
+.festoon-right {
+    right: -50px;
+    top: 10%;
+    animation-delay: 1s;
+}
+
+.festoon-top {
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* Canvas */
+#mainCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Sparkles */
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #fff, 0 0 12px #ffd700;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Happy New Year Image */
+.new-year-image {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-year-image img {
+    max-width: 90%;
+    height: auto;
+    max-height: 350px;
+    animation: imageGlow 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes imageGlow {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    }
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 1));
+    }
+}
+
+.new-year-image.show {
+    opacity: 1;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Top Left Text */
+.top-left-text {
+    position: absolute;
+    top: 8%;
+    left: 3%;
+    max-width: 400px;
+    z-index: 11;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.top-left-text.show {
+    opacity: 1;
+}
+
+.top-left-text p {
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1.6;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 107, 107, 0.6);
+    font-weight: 500;
+}
+
+/* Right Side Text */
+.right-side-text {
+    position: absolute;
+    top: 15%;
+    right: 3%;
+    max-width: 450px;
+    z-index: 11;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.right-side-text.show {
+    opacity: 1;
+}
+
+.right-side-text p {
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1.6;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 107, 107, 0.6);
+    font-weight: 500;
+}
+
+/* Typewriter cursor */
+.top-left-text p::after,
+.right-side-text p::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #ffd700;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Fireworks */
+.fireworks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: firework 1s ease-out forwards;
+}
+
+@keyframes firework {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Start Overlay */
+.start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 26, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 0.5s ease-out;
+}
+
+.start-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.start-content {
+    text-align: center;
+    color: #ffd700;
+}
+
+.start-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 
+        0 0 10px #ffd700,
+        0 0 20px #ffd700,
+        0 0 30px #ff6b6b;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.start-content p {
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+    position: absolute;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 20px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    color: #000;
+    z-index: 15;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.speech-bubble-left {
+    transform: translateY(20px) translateX(-50%);
+}
+
+.speech-bubble-left.show {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+}
+
+.speech-bubble-left::before {
+    bottom: -15px;
+    right: var(--arrow-offset, 20px);
+    border-width: 15px 0 0 15px;
+    border-color: #fff transparent transparent transparent;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+.speech-bubble-right {
+    transform: translateY(20px) translateX(50%);
+}
+
+.speech-bubble-right.show {
+    opacity: 1;
+    transform: translateY(0) translateX(50%);
+}
+
+.speech-bubble-right::before {
+    bottom: -15px;
+    left: var(--arrow-offset, 20px);
+    border-width: 15px 15px 0 0;
+    border-color: #fff transparent transparent transparent;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+
+.speech-bubble p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Landscape Orientation Message */
+.orientation-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a1a;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffd700;
+    text-align: center;
+    padding: 20px;
+}
+
+.orientation-message.show {
+    display: flex;
+}
+
+.orientation-message h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ffd700;
+}
+
+.orientation-message p {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .new-year-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .new-year-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .festoon {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .start-content h2 {
+        font-size: 2rem;
+    }
+    
+    .start-content p {
+        font-size: 1rem;
+    }
+    
+    .top-left-text {
+        top: 5%;
+        left: 2%;
+        max-width: 300px;
+    }
+    
+    .top-left-text p {
+        font-size: 0.9rem;
+    }
+    
+    .right-side-text {
+        top: 12%;
+        right: 2%;
+        max-width: 320px;
+    }
+    
+    .right-side-text p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Portrait orientation on mobile - show message */
+@media screen and (orientation: portrait) and (max-width: 768px) {
+    .orientation-message {
+        display: flex;
+    }
+    
+    .container {
+        display: none;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+    .orientation-message {
+        display: none !important;
+    }
+    
+    .container {
+        display: block;
+    }
+}
+

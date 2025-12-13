@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Happy New Year! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Orientation Message -->
+    <div class="orientation-message" id="orientationMessage">
+        <h2>📱 Please Rotate Your Device</h2>
+        <p>This experience is best viewed in landscape mode.<br>Please rotate your device to continue.</p>
+    </div>
+    
+    <!-- Click to Start Overlay -->
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <h2>Click to Start</h2>
+            <p>Tap anywhere to begin the celebration</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Festoons/Decorations -->
+        <div class="festoon festoon-left"></div>
+        <div class="festoon festoon-right"></div>
+        <div class="festoon festoon-top"></div>
+        
+        <!-- Sparkles -->
+        <div class="sparkles" id="sparkles"></div>
+        
+        <!-- Canvas for stickmen and fireworks -->
+        <canvas id="mainCanvas"></canvas>
+        
+        <!-- Happy New Year Image -->
+        <div class="new-year-image" id="newYearImage">
+            <img src="—Pngtree—happy new year 2026 golden_23006811.png" alt="Happy New Year 2026">
+        </div>
+        
+        <!-- Top Left Text -->
+        <div class="top-left-text" id="topLeftText">
+            <p></p>
+        </div>
+        
+        <!-- Right Side Text -->
+        <div class="right-side-text" id="rightSideText">
+            <p></p>
+        </div>
+        
+        <!-- Fireworks Container -->
+        <div class="fireworks" id="fireworks"></div>
+        
+        <!-- Speech Bubbles -->
+        <div class="speech-bubble speech-bubble-left" id="speechBubble1">
+            <p>Happy new year, Darling 🥳🎉</p>
+        </div>
+        <div class="speech-bubble speech-bubble-right" id="speechBubble2">
+            <p>Happy new year, My love 🎉💖💖<br>I love you !</p>
+        </div>
+        <div class="speech-bubble speech-bubble-left" id="speechBubble3">
+            <p>I love you moreeee 💖💖</p>
+        </div>
+    </div>
+    
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="Beloved(chosic.com).mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

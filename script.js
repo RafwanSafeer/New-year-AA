@@ -2,8 +2,15 @@
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Initialize canvas size
+function initCanvasSize() {
+    const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
+    const scale = isMobileLandscape ? 1.333 : 1;
+    canvas.width = window.innerWidth * scale;
+    canvas.height = window.innerHeight * scale;
+}
+
+initCanvasSize();
 
 // Stickman class
 class Stickman {
@@ -710,20 +717,49 @@ function startFireworks() {
 }
 
 // Handle window resize
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+function handleResize() {
+    // Account for mobile landscape scaling
+    const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
+    const scale = isMobileLandscape ? 1.333 : 1; // Inverse of 0.75 scale
+    
+    canvas.width = window.innerWidth * scale;
+    canvas.height = window.innerHeight * scale;
     stickman1.targetX = canvas.width / 2;
     stickman2.targetX = canvas.width / 2;
     // Reposition stickmen
     stickman1.y = canvas.height * 0.85;
     stickman2.y = canvas.height * 0.85;
-});
+}
+
+window.addEventListener('resize', handleResize);
 
 // Handle start overlay click
 function handleStartClick() {
     hideStartOverlay();
     startAllAudio();
+}
+
+// Handle orientation changes
+function checkOrientation() {
+    const orientationMsg = document.getElementById('orientationMessage');
+    const container = document.querySelector('.container');
+    
+    if (window.innerWidth <= 768) {
+        // Mobile device
+        if (window.innerHeight > window.innerWidth) {
+            // Portrait mode
+            if (orientationMsg) orientationMsg.style.display = 'flex';
+            if (container) container.style.display = 'none';
+        } else {
+            // Landscape mode
+            if (orientationMsg) orientationMsg.style.display = 'none';
+            if (container) container.style.display = 'block';
+        }
+    } else {
+        // Desktop - always show
+        if (orientationMsg) orientationMsg.style.display = 'none';
+        if (container) container.style.display = 'block';
+    }
 }
 
 // Add event listeners for starting audio
@@ -740,6 +776,13 @@ document.addEventListener('DOMContentLoaded', () => {
             handleStartClick();
         }
     }, { once: true });
+    
+    // Check orientation on load and resize
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(checkOrientation, 100);
+    });
 });
 
 // Start animation

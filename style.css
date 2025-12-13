@@ -118,9 +118,9 @@ body {
 }
 
 .new-year-image img {
-    max-width: 90%;
+    max-width: min(90%, 600px);
     height: auto;
-    max-height: 350px;
+    max-height: min(350px, 40vh);
     animation: imageGlow 2s ease-in-out infinite;
     filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
 }
@@ -368,83 +368,75 @@ body {
 
 /* Responsive - Mobile Landscape */
 @media screen and (max-width: 1024px) and (orientation: landscape) {
-    /* Zoom out everything for mobile landscape */
+    /* Use viewport units for proportional scaling */
+    html {
+        font-size: calc(100vw / 1920 * 16); /* Base font size scales with viewport width */
+    }
+    
     body {
-        transform: scale(0.75);
-        transform-origin: top left;
-        width: 133.33%;
-        height: 133.33%;
-    }
-    
-    .container {
-        width: 133.33%;
-        height: 133.33%;
-    }
-    
-    #mainCanvas {
-        width: 133.33%;
-        height: 133.33%;
+        overflow: hidden;
     }
     
     .new-year-text h1 {
-        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 4vw, 3rem);
     }
     
     .new-year-text h2 {
-        font-size: 1.5rem;
+        font-size: clamp(1rem, 2.5vw, 2rem);
     }
     
     .festoon {
-        width: 150px;
-        height: 150px;
+        width: clamp(100px, 12vw, 200px);
+        height: clamp(100px, 12vw, 200px);
     }
     
     .start-content h2 {
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
     }
     
     .start-content p {
-        font-size: 1rem;
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     }
     
     .top-left-text {
-        top: 3%;
+        top: 2%;
         left: 1%;
-        max-width: 280px;
+        max-width: min(280px, 30vw);
     }
     
     .top-left-text p {
-        font-size: 0.85rem;
+        font-size: clamp(0.7rem, 1.2vw, 1rem);
         line-height: 1.4;
     }
     
     .right-side-text {
-        top: 10%;
+        top: 8%;
         right: 1%;
-        max-width: 300px;
+        max-width: min(300px, 32vw);
     }
     
     .right-side-text p {
-        font-size: 0.85rem;
+        font-size: clamp(0.7rem, 1.2vw, 1rem);
         line-height: 1.4;
     }
     
     .new-year-image {
-        top: 2%;
+        top: 1%;
     }
     
     .new-year-image img {
-        max-height: 180px;
+        max-height: min(180px, 20vh);
+        max-width: min(90vw, 600px);
     }
     
     .speech-bubble {
-        font-size: 0.9rem;
-        max-width: 180px;
-        padding: 10px 12px;
+        font-size: clamp(0.7rem, 1.1vw, 1rem);
+        max-width: min(180px, 25vw);
+        padding: clamp(8px, 1.2vw, 12px) clamp(10px, 1.5vw, 15px);
     }
     
     .speech-bubble p {
-        font-size: 0.9rem;
+        font-size: clamp(0.7rem, 1.1vw, 1rem);
         line-height: 1.3;
     }
 }

@@ -2,12 +2,18 @@
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
-// Initialize canvas size
+// Initialize canvas size - scale to fit screen proportionally
 function initCanvasSize() {
     const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
-    const scale = isMobileLandscape ? 1.333 : 1;
-    canvas.width = window.innerWidth * scale;
-    canvas.height = window.innerHeight * scale;
+    
+    if (isMobileLandscape) {
+        // For mobile landscape, use actual viewport size but scale content proportionally
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 }
 
 initCanvasSize();
@@ -716,19 +722,21 @@ function startFireworks() {
     }
 }
 
-// Handle window resize
+// Handle window resize - maintain proportions
 function handleResize() {
-    // Account for mobile landscape scaling
-    const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
-    const scale = isMobileLandscape ? 1.333 : 1; // Inverse of 0.75 scale
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
-    canvas.width = window.innerWidth * scale;
-    canvas.height = window.innerHeight * scale;
-    stickman1.targetX = canvas.width / 2;
-    stickman2.targetX = canvas.width / 2;
-    // Reposition stickmen
-    stickman1.y = canvas.height * 0.85;
-    stickman2.y = canvas.height * 0.85;
+    if (stickman1 && stickman2) {
+        stickman1.targetX = canvas.width / 2;
+        stickman2.targetX = canvas.width / 2;
+        // Reposition stickmen proportionally
+        stickman1.y = canvas.height * 0.85;
+        stickman2.y = canvas.height * 0.85;
+        // Reposition horizontally to maintain proportions
+        stickman1.x = canvas.width * 0.2;
+        stickman2.x = canvas.width * 0.8;
+    }
 }
 
 window.addEventListener('resize', handleResize);

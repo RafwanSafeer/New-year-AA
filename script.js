@@ -389,7 +389,7 @@ function init() {
                         fireworkSound.currentTime = 0;
                         fireworkSound.play().catch(e => console.log('Firework sound failed:', e));
                     }
-                }, 4000);
+                }, 6000);
             })
             .catch(() => {
                 // Autoplay blocked - show overlay

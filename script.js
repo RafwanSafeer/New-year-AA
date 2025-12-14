@@ -347,7 +347,7 @@ function startAllAudio() {
         });
     }
     
-    // Start firework sound after 5 seconds
+    // Start firework sound after 6 seconds
     setTimeout(() => {
         if (fireworkSound) {
             fireworkSound.currentTime = 0;
@@ -355,7 +355,7 @@ function startAllAudio() {
                 console.log('Firework sound play failed:', error);
             });
         }
-    }, 4000);
+    }, 6000);
 }
 
 // Initialize

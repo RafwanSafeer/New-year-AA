@@ -30,7 +30,9 @@ class Stickman {
         this.holdingHands = false;
         this.faceImage = faceImage;
         this.faceLoaded = false;
-        this.scale = 4; // Make stickmen larger
+        // Scale based on screen size - smaller on mobile
+        const isMobile = window.innerWidth <= 1024;
+        this.scale = isMobile ? 2.5 : 4; // Smaller on mobile
         
         // Load face image if provided
         if (faceImage) {
@@ -319,10 +321,12 @@ function drawValley() {
     }
 }
 
-// Draw stars in night sky - more spread out
+// Draw stars in night sky - more spread out, fewer on mobile
 function drawStars() {
     ctx.fillStyle = '#ffffff';
-    for (let i = 0; i < 50; i++) {
+    const isMobile = window.innerWidth <= 1024;
+    const starCount = isMobile ? 30 : 50;
+    for (let i = 0; i < starCount; i++) {
         const x = (i * 73) % canvas.width;
         const y = (i * 97) % (canvas.height * 0.6);
         const size = Math.random() * 2;
@@ -416,7 +420,9 @@ function hideStartOverlay() {
 
 function createSparkles() {
     const sparklesContainer = document.getElementById('sparkles');
-    for (let i = 0; i < 50; i++) {
+    const isMobile = window.innerWidth <= 1024;
+    const sparkleCount = isMobile ? 25 : 50; // Fewer sparkles on mobile
+    for (let i = 0; i < sparkleCount; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = Math.random() * 100 + '%';
@@ -428,7 +434,9 @@ function createSparkles() {
 
 function createFirework(x, y) {
     const colors = ['#ff6b6b', '#ffd93d', '#6bcf7f', '#4ecdc4', '#45b7d1', '#ff9ff3', '#54a0ff', '#ff6b9d', '#c44569'];
-    const particleCount = 50;
+    // Reduce particles on mobile for better performance
+    const isMobile = window.innerWidth <= 1024;
+    const particleCount = isMobile ? 25 : 50;
     
     // Create main burst particles
     for (let i = 0; i < particleCount; i++) {
@@ -449,8 +457,9 @@ function createFirework(x, y) {
         fireworks.push(particle);
     }
     
-    // Add trailing particles
-    for (let i = 0; i < 20; i++) {
+    // Add trailing particles - fewer on mobile
+    const trailCount = isMobile ? 10 : 20;
+    for (let i = 0; i < trailCount; i++) {
         const angle = Math.random() * Math.PI * 2;
         const distance = Math.random() * 30;
         const color = colors[Math.floor(Math.random() * colors.length)];
@@ -463,8 +472,9 @@ function createFirework(x, y) {
         fireworks.push(particle);
     }
     
-    // Add sparkles around firework
-    for (let i = 0; i < 8; i++) {
+    // Add sparkles around firework - fewer on mobile
+    const sparkleCount = isMobile ? 4 : 8;
+    for (let i = 0; i < sparkleCount; i++) {
         const angle = Math.random() * Math.PI * 2;
         const distance = Math.random() * 50 + 30;
         sparkles.push(new Sparkle(
@@ -501,7 +511,19 @@ function drawHandsConnection() {
     }
 }
 
-function animate() {
+// Performance optimization - reduce frame rate on mobile
+let lastFrameTime = 0;
+const targetFPS = window.innerWidth <= 1024 ? 30 : 60;
+const frameInterval = 1000 / targetFPS;
+
+function animate(currentTime) {
+    // Throttle frame rate on mobile for better performance
+    if (window.innerWidth <= 1024 && currentTime - lastFrameTime < frameInterval) {
+        requestAnimationFrame(animate);
+        return;
+    }
+    lastFrameTime = currentTime || performance.now();
+    
     // Clear canvas with night sky
     ctx.fillStyle = '#0a0a1a';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -705,15 +727,19 @@ function startFireworks() {
         }, 1000);
     }, 500);
     
-    // Create continuous fireworks
+    // Create continuous fireworks - slower on mobile for better performance
+    const isMobile = window.innerWidth <= 1024;
+    const fireworkInterval = isMobile ? 2000 : 1200;
+    const initialBurstCount = isMobile ? 5 : 8;
+    
     setInterval(() => {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height * 0.4 + 50;
         createFirework(x, y);
-    }, 1200);
+    }, fireworkInterval);
     
     // Initial burst
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < initialBurstCount; i++) {
         setTimeout(() => {
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height * 0.4 + 50;

@@ -377,6 +377,14 @@ body {
         overflow: hidden;
     }
     
+    /* Optimize canvas rendering for mobile */
+    #mainCanvas {
+        image-rendering: optimizeSpeed;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
     .new-year-text h1 {
         font-size: clamp(1.5rem, 4vw, 3rem);
     }

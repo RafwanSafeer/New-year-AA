@@ -7,9 +7,9 @@ function initCanvasSize() {
     const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
     
     if (isMobileLandscape) {
-        // For mobile landscape, use actual viewport size but scale content proportionally
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Account for container scaling (0.65 scale = 1.5385 inverse)
+        canvas.width = window.innerWidth * 1.5385;
+        canvas.height = window.innerHeight * 1.5385;
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -750,8 +750,16 @@ function startFireworks() {
 
 // Handle window resize - maintain proportions
 function handleResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const isMobileLandscape = window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
+    
+    // Account for container scaling on mobile
+    if (isMobileLandscape) {
+        canvas.width = window.innerWidth * 1.5385; // Inverse of 0.65 scale
+        canvas.height = window.innerHeight * 1.5385;
+    } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
     
     if (stickman1 && stickman2) {
         stickman1.targetX = canvas.width / 2;

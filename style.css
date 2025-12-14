@@ -385,66 +385,75 @@ body {
         will-change: transform;
     }
     
+    /* Scale down everything proportionally to fit mobile landscape */
+    .container {
+        transform: scale(0.65);
+        transform-origin: top center;
+        width: 153.85%;
+        height: 153.85%;
+        margin-left: -26.925%;
+    }
+    
     .new-year-text h1 {
-        font-size: clamp(1.5rem, 4vw, 3rem);
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     }
     
     .new-year-text h2 {
-        font-size: clamp(1rem, 2.5vw, 2rem);
+        font-size: clamp(1.2rem, 2.2vw, 1.8rem);
     }
     
     .festoon {
-        width: clamp(100px, 12vw, 200px);
-        height: clamp(100px, 12vw, 200px);
+        width: clamp(80px, 10vw, 150px);
+        height: clamp(80px, 10vw, 150px);
     }
     
     .start-content h2 {
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-size: clamp(1.5rem, 2.8vw, 2.2rem);
     }
     
     .start-content p {
-        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        font-size: clamp(0.85rem, 1.3vw, 1.1rem);
     }
     
     .top-left-text {
-        top: 2%;
-        left: 1%;
-        max-width: min(280px, 30vw);
+        top: 3%;
+        left: 2%;
+        max-width: min(250px, 28vw);
     }
     
     .top-left-text p {
-        font-size: clamp(0.7rem, 1.2vw, 1rem);
-        line-height: 1.4;
+        font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+        line-height: 1.5;
     }
     
     .right-side-text {
-        top: 8%;
-        right: 1%;
-        max-width: min(300px, 32vw);
+        top: 10%;
+        right: 2%;
+        max-width: min(270px, 30vw);
     }
     
     .right-side-text p {
-        font-size: clamp(0.7rem, 1.2vw, 1rem);
-        line-height: 1.4;
+        font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+        line-height: 1.5;
     }
     
     .new-year-image {
-        top: 1%;
+        top: 2%;
     }
     
     .new-year-image img {
-        max-height: min(180px, 20vh);
-        max-width: min(90vw, 600px);
+        max-height: min(150px, 18vh);
+        max-width: min(85vw, 550px);
     }
     
     .speech-bubble {
-        font-size: clamp(0.7rem, 1.1vw, 1rem);
-        max-width: min(180px, 25vw);
-        padding: clamp(8px, 1.2vw, 12px) clamp(10px, 1.5vw, 15px);
+        font-size: clamp(0.75rem, 1vw, 0.95rem);
+        max-width: min(160px, 22vw);
+        padding: clamp(8px, 1vw, 10px) clamp(10px, 1.3vw, 12px);
     }
     
     .speech-bubble p {
-        font-size: clamp(0.7rem, 1.1vw, 1rem);
+        font-size: clamp(0.75rem, 1vw, 0.95rem);
         line-height: 1.3;
     }
 }

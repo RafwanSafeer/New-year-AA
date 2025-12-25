@@ -9,8 +9,16 @@
 <body>
     <!-- Orientation Message -->
     <div class="orientation-message" id="orientationMessage">
-        <h2>📱 Please Rotate Your Device</h2>
-        <p>This experience is best viewed in landscape mode.<br>Please rotate your device to continue.</p>
+        <h2>📱 View on Desktop</h2>
+        <p>This experience is best viewed on a desktop or laptop.</p>
+        <div class="link-container">
+            <p class="link-label">Copy this link and open it on your desktop/laptop:</p>
+            <div class="link-box" id="linkBox" onclick="copyLink()">
+                <span id="linkText">https://rafwansafeer.github.io/New-year-AA/</span>
+                <span class="copy-icon">📋</span>
+            </div>
+            <p class="copy-feedback" id="copyFeedback">Click to copy!</p>
+        </div>
     </div>
     
     <!-- Click to Start Overlay -->

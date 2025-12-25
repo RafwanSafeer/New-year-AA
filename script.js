@@ -781,24 +781,62 @@ function handleStartClick() {
     startAllAudio();
 }
 
+// Copy link function
+function copyLink() {
+    const linkText = 'https://rafwansafeer.github.io/New-year-AA/';
+    const copyFeedback = document.getElementById('copyFeedback');
+    
+    // Try to copy to clipboard
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(linkText).then(() => {
+            showCopyFeedback(copyFeedback, true);
+        }).catch(() => {
+            fallbackCopy(linkText, copyFeedback);
+        });
+    } else {
+        fallbackCopy(linkText, copyFeedback);
+    }
+}
+
+function fallbackCopy(text, feedback) {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showCopyFeedback(feedback, true);
+    } catch (err) {
+        showCopyFeedback(feedback, false);
+    }
+    document.body.removeChild(textArea);
+}
+
+function showCopyFeedback(element, success) {
+    if (!element) return;
+    
+    element.textContent = success ? '✓ Copied! Paste it on your desktop/laptop' : 'Please select and copy manually';
+    element.className = success ? 'copy-feedback show copied' : 'copy-feedback show';
+    
+    setTimeout(() => {
+        element.classList.remove('show');
+    }, 3000);
+}
+
 // Handle orientation changes
 function checkOrientation() {
     const orientationMsg = document.getElementById('orientationMessage');
     const container = document.querySelector('.container');
     
     if (window.innerWidth <= 768) {
-        // Mobile device
-        if (window.innerHeight > window.innerWidth) {
-            // Portrait mode
-            if (orientationMsg) orientationMsg.style.display = 'flex';
-            if (container) container.style.display = 'none';
-        } else {
-            // Landscape mode
-            if (orientationMsg) orientationMsg.style.display = 'none';
-            if (container) container.style.display = 'block';
-        }
+        // Mobile device - always show message to use desktop
+        if (orientationMsg) orientationMsg.style.display = 'flex';
+        if (container) container.style.display = 'none';
     } else {
-        // Desktop - always show
+        // Desktop - always show content
         if (orientationMsg) orientationMsg.style.display = 'none';
         if (container) container.style.display = 'block';
     }

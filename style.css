@@ -493,9 +493,76 @@ body {
     text-shadow: 0 0 10px #ffd700;
 }
 
-.orientation-message p {
+.orientation-message > p {
     font-size: 1.2rem;
     color: #fff;
+    margin-bottom: 30px;
+}
+
+.link-container {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.link-label {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.link-box {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.link-box:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffed4e;
+    transform: scale(1.02);
+}
+
+.link-box:active {
+    transform: scale(0.98);
+}
+
+#linkText {
+    color: #ffd700;
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex: 1;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.copy-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.copy-feedback {
+    font-size: 0.9rem;
+    color: #4ecdc4;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.copy-feedback.show {
+    opacity: 1;
+}
+
+.copy-feedback.copied {
+    color: #6bcf7f;
 }
 
 /* Responsive - Desktop */

@@ -32,7 +32,7 @@ class Stickman {
         this.faceLoaded = false;
         // Scale based on screen size - smaller on mobile
         const isMobile = window.innerWidth <= 1024;
-        this.scale = isMobile ? 2.5 : 4; // Smaller on mobile
+        this.scale = isMobile ? 3 : 4.5; // Slightly larger
         
         // Load face image if provided
         if (faceImage) {
